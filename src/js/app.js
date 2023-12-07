@@ -27,21 +27,61 @@ function render(variables = {}) {
   // here we ask the logical questions to make decisions on how to build the html
   // if includeCover==false then we reset the cover code without the <img> tag to make the cover transparent.
   let cover = `<div class="cover"><img src="${variables.background}" /></div>`;
+  let photo = `<img src="${variables.avatarURL}" class="photo" />`;
+  let name = `<h1>${variables.name} ${variables.lastName}</h1>`;
+  let role = `<h2>${variables.role}</h2>`;
+  let country = `<h3>${variables.country}</h3>`;
+  let city = `<h3>${variables.city}</h3>`;
+  let position = `<ul class="${variables.socialMediaPosition}">
+  <li><a href="https://twitter.com/${variables.twitter}"><i class="fab fa-twitter"></i></a></li>
+  <li><a href="https://github.com/${variables.github}"><i class="fab fa-github"></i></a></li>
+  <li><a href="https://linkedin.com/${variables.linkedin}"><i class="fab fa-linkedin"></i></a></li>
+  <li><a href="https://instagram.com/${variables.instagram}"><i class="fab fa-instagram"></i></a></li>
+  </ul>`;
+  let twitter = `<ul class=" "></ul>`;
+  let github = `<ul class=" ">`;
+  let linkedin = `<ul class=" "></ul>`;
+  let instagram = `<ul class=" "></ul>`;
+
   if (variables.includeCover == false) cover = "<div class='cover'></div>";
+  if (variables.avatarURL == false) photo = "<img class='photo' />";
+  if (variables.name == null) name = "<h1></h1>";
+  if (variables.role == null) role = "<h2></h2>";
+  if (variables.country == null) country = "<h3></h3>";
+  if (variables.city == null) city = "<h3></h3>";
+  // if (variables.twitter == null) twitter = "<a href=''></a>";
+  // if (variables.github == null) github = "<a href=''></a>";
+  // if (variables.linkedin == null) linkedin = "<a href=''></a>";
+  // if (variables.instagram == null) instagram = "<a href=''></a>";
+  if (variables.socialMediaPosition == "right") {
+    position = "<ul class='position-right'></ul>";
+  }
+  if (variables.socialMediaPosition == "left") {
+    position = "<ul class='position-left'></ul>";
+  }
 
   // reset the website body with the new html output
   document.querySelector("#widget_content").innerHTML = `<div class="widget">
             ${cover}
-          <img src="${variables.avatarURL}" class="photo" />
-          <h1>Lucy Boilett</h1>
-          <h2>Web Developer</h2>
-          <h3>Miami, USA</h3>
-          <ul class="position-right">
-            <li><a href="https://twitter.com/4geeksacademy"><i class="fab fa-twitter"></i></a></li>
+            ${photo}
+            ${name}
+            ${role}
+            ${country}
+            ${city}
+            
+            
+           
+
+            ${position}
+
+          
+      
+          <!--<ul class="position-right">
+            <li><a href="https://github.com/4geeksacademy"><i class="fab fa-twitter"></i></a></li>
             <li><a href="https://github.com/4geeksacademy"><i class="fab fa-github"></i></a></li>
             <li><a href="https://linkedin.com/school/4geeksacademy"><i class="fab fa-linkedin"></i></a></li>
             <li><a href="https://instagram.com/4geeksacademy"><i class="fab fa-instagram"></i></a></li>
-          </ul>
+          </ul>-->
         </div>
     `;
 }
